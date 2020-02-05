@@ -8,13 +8,17 @@ const port = process.env.PORT || 3000;
 
 const bookRouter = require('./routes/bookRouter')();
 
+const favicon = require('serve-favicon');
+const path = require('path');
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api', bookRouter);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to my Nodemon API');
+  res.send('Welcome to my API');
 });
 
 app.listen(port, () => {
